@@ -1,0 +1,20 @@
+name: initialize-terraform
+on: [push]
+jobs:
+  initialize-terraform:
+    name: "Initialize Terraform"
+    env:
+      ARM_CLIENT_ID: "d96ddd71-f4ff-40bd-a34d-e34194fdd755"
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: "55021f43-06c2-4f70-b9f4-213aba13920e"
+      ARM_TENANT_ID: "715318fb-a61d-45d5-89a3-1bc87844d7b3"
+    defaults:
+      run:
+        working-directory: Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2.0.0
+      - run: terraform init
+      - id: plan
+        run: terraform plan
