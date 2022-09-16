@@ -9,15 +9,14 @@ jobs:
       ARM_SUBSCRIPTION_ID: "55021f43-06c2-4f70-b9f4-213aba13920e"
       ARM_TENANT_ID: "715318fb-a61d-45d5-89a3-1bc87844d7b3"
       ACR_URL: crdevcentralusnaraexplorer.azurecr.io
-    defaults:
-      run:
-        working-directory: Terraform
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2.0.0
       - run: terraform init
+        working-directory: Terraform
       - run: terraform apply -auto-approve -input=false
+        working-directory: Terraform
       - uses: docker/login-action@v2
         with:
           registry: crdevcentralusnaraexplorer.azurecr.io
