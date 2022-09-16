@@ -7,4 +7,9 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Dockerfile" />
+      <None Remove=".dockerignore" />
+    </ItemGroup>
+
 </Project>
